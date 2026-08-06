@@ -1,0 +1,226 @@
+@import "tailwindcss";
+
+/* ---------------------------------------------------------------------------
+   Palette — "Capture Volume". These hex values are authoritative.
+   --marker is the interactive colour. --signal is the "this number is the
+   point" colour. Never both on the same element.
+--------------------------------------------------------------------------- */
+:root {
+  --ink: #08090c;
+  --panel: #11141b;
+  --line: #232833;
+  --bone: #eceae4;
+  --muted: #8a8f9c;
+  --marker: #3ce0d0;
+  --signal: #ff6b3d;
+
+  --section-rhythm: 120px;
+  --gutter: 24px;
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --section-rhythm: 180px;
+    --gutter: 48px;
+  }
+}
+
+/* `@theme inline` (not plain `@theme`) — plain @theme adds an indirection that
+   fails to resolve var() references coming from next/font. */
+@theme inline {
+  --color-ink: var(--ink);
+  --color-panel: var(--panel);
+  --color-line: var(--line);
+  --color-bone: var(--bone);
+  --color-muted: var(--muted);
+  --color-marker: var(--marker);
+  --color-signal: var(--signal);
+
+  --font-display: var(--font-bricolage), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, "SFMono-Regular", monospace;
+
+  --radius-instrument: 4px;
+}
+
+/* ---------------------------------------------------------------------------
+   Base
+--------------------------------------------------------------------------- */
+@layer base {
+  * {
+    border-color: var(--line);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: auto; /* Lenis owns scrolling; native smooth would fight it */
+  }
+
+  body {
+    background-color: var(--ink);
+    color: var(--bone);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: var(--marker);
+    color: var(--ink);
+  }
+
+  /* Visible keyboard focus everywhere, but not on mouse click. */
+  :focus-visible {
+    outline: 2px solid var(--marker);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Mono figures must not jitter while counting up. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum" 1;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Preloader. Server-rendered SVG driven entirely by CSS keyframes, so it is in
+   the first paint instead of waiting on hydration. Hidden by default and only
+   shown when the pre-paint script sets data-preload="run" — so a repeat visit,
+   reduced motion, or JS being disabled all mean it never appears, and there is
+   no state in which it can hide the site.
+
+   Budget is 1.2s wall-clock. Nominal here is ~1.04s (0.67s draw, then a 0.32s
+   lift starting at 0.72s); the ~150ms of real-world slop between first paint
+   and the animation clock starting is what the headroom is for.
+--------------------------------------------------------------------------- */
+#preloader {
+  display: none;
+}
+
+html[data-preload="run"] #preloader {
+  display: block;
+  position: fixed;
+  inset: 0;
+  z-index: 79;
+  background-color: var(--ink);
+  animation: preloader-lift 0.32s ease-in 0.72s forwards;
+}
+
+.preloader-frame {
+  position: absolute;
+  inset: 0;
+}
+
+.preloader-narrow {
+  display: block;
+}
+.preloader-wide {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .preloader-narrow {
+    display: none;
+  }
+  .preloader-wide {
+    display: block;
+  }
+}
+
+.preloader-bone {
+  animation: preloader-draw 0.38s ease-out forwards;
+}
+
+.preloader-joint {
+  transform: scale(0);
+  animation: preloader-pop 0.26s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes preloader-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes preloader-pop {
+  to {
+    transform: scale(1);
+  }
+}
+
+/* The joints expand outward as the overlay lifts, so the eye reads them
+   dissolving into the hero point cloud rather than simply disappearing. */
+@keyframes preloader-lift {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+html[data-preload="run"] .preloader-joint {
+  animation:
+    preloader-pop 0.26s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+    preloader-scatter 0.28s ease-in 0.72s forwards;
+}
+
+@keyframes preloader-scatter {
+  to {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+/* Applied by JS only. If the cursor script fails, the native cursor survives. */
+.has-custom-cursor,
+.has-custom-cursor * {
+  cursor: none;
+}
+
+/* Grain drifts one tile in discrete steps — transform only, no repaint. */
+@keyframes grain {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-140px, -140px, 0);
+  }
+}
+
+@layer utilities {
+  /* Section eyebrow: `01 / LANDING` */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .hairline {
+    border-top: 1px solid var(--line);
+  }
+
+  /* Headings are split into chars and rise out of this clip. */
+  .mask-line {
+    display: block;
+    overflow: hidden;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Reduced motion — the CSS half of the contract. GSAP (gsap.matchMedia),
+   Framer (<MotionConfig reducedMotion="user">), Lenis (lerp:1) and
+   PoseRenderer each handle their own half; this catches everything else.
+--------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
