@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { site, sections } from "@/content";
 import { Container } from "./Section";
+import { MarkIcon } from "./MarkIcon";
 import { cn } from "@/lib/cn";
 
 /**
@@ -53,9 +54,9 @@ export function Nav({ active }: { active: string }) {
           href="#landing"
           data-cursor="invert"
           aria-label={`${site.name} — back to top`}
-          className="font-mono text-xs tracking-[0.2em] text-bone transition-colors duration-300 hover:text-marker"
+          className="inline-flex items-center transition-opacity duration-300 hover:opacity-80"
         >
-          {site.logo.bracketed}
+          <MarkIcon size={30} />
         </a>
 
         <nav aria-label="Primary">

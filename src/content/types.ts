@@ -59,7 +59,7 @@ export interface Landing {
 export interface About {
   heading: string;
   paragraph: string;
-  portrait: { alt: string; confidenceLabel: string };
+  portrait: { alt: string; confidenceLabel: string; markLabel: string };
   mission: { title: string; body: string };
   vision: { title: string; body: string };
   workLinks: { label: string; href: string }[];
