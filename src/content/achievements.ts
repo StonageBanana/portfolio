@@ -40,8 +40,8 @@ export const achievements: Achievement[] = [
     title: "Model deployed and publicly live",
     org: "SmartBridge / Hugging Face",
     detail:
-      "Took a CatBoost flight-price model from raw records to a live Streamlit application on Hugging Face Spaces, still running today.",
-    figure: "~96% R²",
+      "Took a flight-price model from raw records to a live Hugging Face Space, still running today — serialised to JavaScript and run in the browser, so there is no backend and no cold start.",
+    figure: "0.784 R²",
   },
   {
     id: "aws",

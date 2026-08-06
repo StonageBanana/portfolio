@@ -55,7 +55,8 @@ const EXPECT = [
   ["VIT period", "Aug 2020 – Jul 2024"],
   ["experience period", "May 2023 – Jul 2023"],
   ["externship programme", "Applied Data Science, powered by Google"],
-  ["CatBoost achievement", "Selected CatBoost at ~96% R² across 10,000+ flight records"],
+  ["flight: model selection", "then deployed Gradient Boosting instead at 0.784 R²"],
+  ["flight: browser parity", "predictions verified identical to scikit-learn to 8.2e-9"],
   ["project 01 title", "Markerless vs. Marker-Based Motion Capture: SAM 3D Body vs. Vicon"],
   ["project 01 distortion", "hip keypoints compressed to ~44% of true hip width, pelvis axis ~106° misaligned"],
   ["project 01 fusion", "confidence-weighted fusion (r = −0.13, p = 0.07)"],
@@ -104,7 +105,31 @@ const GUARDS = [
   },
 ];
 
+/**
+ * Claims the repo disproves. These were on the site before the flight-price
+ * project was rewritten and must not come back: the project benchmarks six
+ * regressors (no CatBoost, no XGBoost), tops out at 0.833 R², and deploys a
+ * browser-side Gradient Boosting model rather than a Streamlit app.
+ */
+const DISPROVEN = [
+  "Selected CatBoost",
+  "CatBoost flight-price model",
+  "96% R²",
+  "8 regression algorithms",
+  "eight regression algorithms",
+  "Streamlit app on Hugging Face",
+  "via Streamlit with a recorded video walkthrough",
+];
+
 let fail = 0;
+for (const claim of DISPROVEN) {
+  if (text.includes(claim)) {
+    fail++;
+    console.log(
+      `DISPROVEN  "${claim}" is on the page — the flight-price repo contradicts it`,
+    );
+  }
+}
 for (const g of GUARDS) {
   const m = text.match(g.re);
   if (!m) {

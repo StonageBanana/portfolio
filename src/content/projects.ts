@@ -226,54 +226,71 @@ export const projects: Project[] = [
     period: "Jul 2023",
     liveStatus: true,
     summary:
-      "End-to-end ML pipeline on 10,000+ flight records, taken all the way from raw data to a public, interactive application.",
+      "End-to-end ML pipeline on 10,682 Indian domestic flight records, taken from raw data to a public application — where a free-hosting constraint turned model selection into an accuracy-versus-payload decision rather than a leaderboard one.",
     outcomes: [
       {
         segments: [
           {
             t: "text",
-            v: "Decomposed departure/arrival timestamps into predictive temporal features and encoded high-cardinality categoricals (airline, route, class, stops).",
+            v: "Decomposed journey, departure and arrival timestamps into day/month/hour/minute components and encoded airline, source and destination, yielding a ",
+          },
+          { t: "strong", v: "29-feature design matrix" },
+          {
+            t: "text",
+            v: " — with stop count mapped ordinally, since it genuinely is ordered.",
           },
         ],
       },
       {
         segments: [
-          { t: "text", v: "Trained and compared " },
-          { t: "strong", v: "8 regression algorithms" },
+          { t: "text", v: "Benchmarked " },
+          { t: "strong", v: "six regressors" },
           {
             t: "text",
-            v: " (Linear/Lasso/Ridge, KNN, SVR, Decision Tree, Random Forest, XGBoost, CatBoost).",
+            v: " on one 80/20 split (Random Forest, Gradient Boosting, Decision Tree, KNN, SVR, Logistic Regression). Random Forest was the most accurate at ",
           },
+          { t: "metric", v: "0.833" },
+          { t: "text", v: " R², MAE ₹1,101." },
         ],
       },
       {
         segments: [
-          { t: "strong", v: "Selected CatBoost at ~" },
-          { t: "metric", v: "96%" },
-          { t: "strong", v: " R²" },
+          { t: "strong", v: "Deployed Gradient Boosting instead, and documented why" },
           {
             t: "text",
-            v: " — ordered target statistics handle high-cardinality categoricals natively, avoiding one-hot dimensionality explosion and label-encoding false ordinality.",
+            v: ": the free static tier has no Python backend, so the model is serialised to JavaScript and run in the browser. Random Forest needed 706,126 nodes and ",
           },
+          { t: "metric", v: "16.2" },
+          { t: "text", v: " MB; boosting holds " },
+          { t: "metric", v: "0.784" },
+          { t: "text", v: " R² in " },
+          { t: "metric", v: "0.03" },
+          { t: "text", v: " MB — 0.2% of the bytes for most of the accuracy." },
         ],
       },
       {
         segments: [
-          { t: "strong", v: "Deployed publicly" },
           {
             t: "text",
-            v: " on Hugging Face Spaces via Streamlit with a recorded video walkthrough.",
+            v: "Proved the browser port computes the same function: across 5,000 randomised feature vectors the JavaScript and scikit-learn predictions differ by at most ",
+          },
+          { t: "strong", v: "8.2e-9" },
+          {
+            t: "text",
+            v: ", with zero cases differing by as much as ₹0.50.",
           },
         ],
       },
     ],
     tech: [
       "Python",
-      "CatBoost",
-      "XGBoost",
       "Scikit-learn",
+      "Gradient Boosting",
       "Pandas",
+      "NumPy",
+      "JavaScript",
       "Streamlit",
+      "Docker",
       "Hugging Face Spaces",
     ],
     links: [
