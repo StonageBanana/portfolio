@@ -284,7 +284,7 @@ export const projects: Project[] = [
       },
       {
         label: "Live app",
-        href: "https://stonagebanana-flight-price-prediction-smartb.hf.space/",
+        href: "https://stonagebanana04-flight-price-prediction.static.hf.space",
         kind: "live",
       },
     ],

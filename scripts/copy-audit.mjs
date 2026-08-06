@@ -82,7 +82,7 @@ const LINKS = [
   "https://github.com/StonageBanana/Customized-CNNs-for-Precise-Lung-Cancer-Classification",
   "https://github.com/StonageBanana/Pathfinding-Algorithms",
   "https://github.com/StonageBanana/Flight-Price-Prediction-SmartBridge-Internship---Applied-Data-Science",
-  "https://stonagebanana-flight-price-prediction-smartb.hf.space/",
+  "https://stonagebanana04-flight-price-prediction.static.hf.space",
   "https://github.com/StonageBanana/Crop-Yield-Prediction",
   "https://github.com/StonageBanana/Novel-Customer-Segmentation-on-Credit-Card-Customer-Details",
 ];
