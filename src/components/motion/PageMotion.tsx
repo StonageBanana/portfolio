@@ -34,7 +34,19 @@ export function PageMotion() {
 
     mm.add("(prefers-reduced-motion: no-preference)", () => {
       // ---- text -----------------------------------------------------------
-      document.querySelectorAll<HTMLElement>('[data-split="chars"]').forEach(
+      // The hero's text is the Largest Contentful Paint element. Splitting it
+      // and animating from opacity 0 means the biggest thing on the page stays
+      // invisible until GSAP has downloaded, parsed, split it and started a
+      // tween — measured at 4.06s LCP on a throttled phone. Below the fold that
+      // cost is invisible; here it IS the metric. So on touch devices the hero
+      // text paints immediately and only the rest of the page animates.
+      const animateHeroText = window.matchMedia("(pointer: fine)").matches;
+      const splitTargets = (selector: string) =>
+        [...document.querySelectorAll<HTMLElement>(selector)].filter(
+          (el) => animateHeroText || !el.closest("#landing"),
+        );
+
+      splitTargets('[data-split="chars"]').forEach(
         (el) => {
           const split = SplitText.create(el, {
             // "words,chars" — NOT "chars" alone. Splitting into bare characters
@@ -57,7 +69,7 @@ export function PageMotion() {
         },
       );
 
-      document.querySelectorAll<HTMLElement>('[data-split="words"]').forEach(
+      splitTargets('[data-split="words"]').forEach(
         (el) => {
           const split = SplitText.create(el, {
             type: "words",
