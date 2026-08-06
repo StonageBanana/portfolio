@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!--
+    Favicon: the [ MK ] monogram.
+
+    Solid --marker tile with --ink letterforms rather than the site's dark-on-
+    dark scheme: a favicon sits in a browser tab strip that may be light or
+    dark, and only high contrast survives at 16px.
+
+    Letters are drawn as stroked paths, not <text>. An SVG favicon is rendered
+    in isolation with no access to the page's webfonts, so <text> would fall
+    back to whatever the OS supplies and look different on every machine.
+  -->
+  <rect width="64" height="64" rx="6" fill="#3CE0D0"/>
+
+  <g fill="none" stroke="#08090C" stroke-width="5"
+     stroke-linecap="round" stroke-linejoin="round">
+    <!-- M -->
+    <path d="M14 46 V20 L22 33 L30 20 V46"/>
+    <!-- K -->
+    <path d="M38 20 V46"/>
+    <path d="M50 20 L38 33 L50 46"/>
+  </g>
+</svg>
