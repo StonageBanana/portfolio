@@ -12,7 +12,7 @@ export const site: Site = {
   phone: "+49 1551 0425067",
   location: "Erlangen, Germany",
   workAuthorisation:
-    "German student residence permit · eligible for the 18-month post-study job-seeker permit and EU Blue Card on graduation",
+    "German student residence permit · eligible for the 18-month post-study job-seeker permit and the EU Blue Card on graduation",
   workAuthorisationShort:
     "German student residence permit · EU Blue Card eligible on graduation",
   socials: [

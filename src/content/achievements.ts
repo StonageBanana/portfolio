@@ -50,7 +50,7 @@ export const achievements: Achievement[] = [
     title: "AWS Certified Cloud Practitioner",
     org: "Amazon Web Services",
     detail:
-      "Foundational cloud certification, currently building toward the AWS Machine Learning Engineer – Associate.",
+      "Foundational cloud certification; I'm now working toward the AWS Certified Machine Learning Engineer – Associate.",
     figure: "CLF-C02",
   },
 ];

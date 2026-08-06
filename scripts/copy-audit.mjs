@@ -39,7 +39,7 @@ const text = html
 
 const EXPECT = [
   ["landing intro (opening)", "I build computer vision and machine learning systems end to end — from raw sensor data through the debugging nobody sees to a working, interpretable result."],
-  ["landing intro (finding)", "on a markerless motion capture study I traced a geometric distortion that had corrupted every trial, and correcting it cut joint-angle RMSE by 66–75% and flipped correlation with ground truth from strongly negative to strongly positive."],
+  ["landing intro (finding)", "on a markerless motion capture study I traced a geometric distortion that had corrupted every trial, and correcting it cut hip and knee flexion RMSE by 66–75% and reversed the sign of its agreement with ground truth."],
   ["landing intro (close)", "If you need someone who will find the problem before the reviewer does — let's talk."],
   ["about paragraph (opening)", "I'm a data scientist finishing an M.Sc. in Data Science (AI & ML) at FAU Erlangen-Nürnberg, after a B.Tech in Computer Science at VIT Chennai."],
   ["about paragraph (auditing)", "What separates my projects is the auditing: reproducible, config-driven pipelines with regression suites that enforce mathematical invariants, so a silent failure gets caught by the pipeline instead of by a reader."],
@@ -47,16 +47,16 @@ const EXPECT = [
   ["mission", "To build measurement systems that are honest about their own error, so the people relying on them — clinicians, researchers, engineers — know exactly how far to trust the number."],
   ["vision", "To help make markerless, camera-only motion capture accurate enough to replace marker-based labs in clinical practice, putting gait and movement analysis within reach of any clinic with two cameras."],
   ["designation line", "Data Scientist · Computer Vision & 3D Pose Estimation · Applied Machine Learning"],
-  ["work authorisation", "German student residence permit · eligible for the 18-month post-study job-seeker permit and EU Blue Card on graduation"],
+  ["work authorisation", "German student residence permit · eligible for the 18-month post-study job-seeker permit and the EU Blue Card on graduation"],
   ["contact heading", "Let's build something measurable."],
   ["footer tagline", "Measure it, then prove the measurement."],
   ["achievements subheading", "Results I can point to, including the ones that came from finding what was broken."],
-  ["FAU graduation (filled in)", "Oct 2024 – Expected Sep 2027"],
+  ["FAU graduation (filled in)", "Oct 2024 – Sep 2027 (expected)"],
   ["VIT period", "Aug 2020 – Jul 2024"],
   ["experience period", "May 2023 – Jul 2023"],
   ["externship programme", "Applied Data Science, powered by Google"],
   ["flight: model selection", "then deployed Gradient Boosting instead at 0.784 R²"],
-  ["flight: browser parity", "predictions verified identical to scikit-learn to 8.2e-9"],
+  ["flight: browser parity", "predictions matching scikit-learn to within 8.2e-9 rupees"],
   ["project 01 title", "Markerless vs. Marker-Based Motion Capture: SAM 3D Body vs. Vicon"],
   ["project 01 distortion", "hip keypoints compressed to ~44% of true hip width, pelvis axis ~106° misaligned"],
   ["project 01 fusion", "confidence-weighted fusion (r = −0.13, p = 0.07)"],
@@ -65,7 +65,7 @@ const EXPECT = [
   ["project 02 accuracy", "accuracy (97.1% precision, 97.0% recall, 97.0% F1) with the Custom EfficientNet"],
   ["project 03 planners", "A*, Dijkstra, BFS, DFS, Greedy Best-First, Bidirectional, Jump Point Search"],
   ["project 04 title", "Flight Price Prediction — Deployed ML Web Application"],
-  ["project 05 datasets", "four independently-sourced agricultural datasets"],
+  ["project 05 datasets", "four independently sourced agricultural datasets"],
   ["project 06 clustering", "four clustering algorithms with deliberately incompatible assumptions"],
   ["skills: geometry", "3D Geometry (Procrustes/Umeyama/GPA)"],
   ["skills: trc export", ".trc Export (Vicon Nexus / Visual3D / OpenSim)"],
@@ -112,6 +112,16 @@ const GUARDS = [
  * browser-side Gradient Boosting model rather than a Streamlit app.
  */
 const DISPROVEN = [
+  // The seminar fix reprojected joint angles onto mocap's pelvis frame. It
+  // never restored hip width — the keypoints stay compressed at 44%, and the
+  // repo is explicit that "joint positions were fine; the frame they were
+  // expressed in was not". This caption claimed a correction that didn't happen.
+  "hip width 44% → 100%",
+  // NOTE: TensorFlow/Keras are deliberately NOT banned outright. The CNN
+  // notebook imports torch/cv2/sklearn and neither TF nor Keras, so they were
+  // removed from that project's tech tags — but they remain in the skills list
+  // and About paragraph as general competence, which is a claim about the
+  // author rather than about a repo. Banning the words here would fail on those.
   "Selected CatBoost",
   "CatBoost flight-price model",
   "96% R²",

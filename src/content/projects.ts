@@ -14,7 +14,7 @@ export const projects: Project[] = [
     period: "2026",
     featured: true,
     summary:
-      "Led a seminar research study testing whether a two-camera markerless setup using Meta's SAM 3D Body can substitute for a 10-camera marker-based Vicon rig in clinical gait and movement analysis, across 10 trials spanning walking, running, squats and dance. The headline finding wasn't the benchmark — it was a systematic geometric distortion present in every single trial that had to be found before any number meant anything.",
+      "A seminar research study testing whether a two-camera markerless setup using Meta's SAM 3D Body can substitute for a 10-camera marker-based Vicon rig in clinical gait and movement analysis, across 10 trials spanning walking, running, squats and dance. The benchmark numbers came second. First I had to find a systematic geometric distortion sitting in all 10 trials, which had been quietly corrupting every joint angle the pipeline produced.",
     outcomes: [
       {
         segments: [
@@ -39,12 +39,12 @@ export const projects: Project[] = [
           { t: "strong", v: "9-stage reproducible pipeline" },
           {
             t: "text",
-            v: " (C3D parsing → per-view inference → Umeyama/Procrustes alignment → accuracy metrics → GPA-based two-view fusion requiring ",
+            v: " — C3D parsing, per-view inference, Umeyama/Procrustes alignment, accuracy metrics, GPA-based two-view fusion requiring ",
           },
           { t: "strong", v: "zero camera calibration" },
           {
             t: "text",
-            v: " → literature-benchmarked synthesis) plus a regression-audit suite enforcing invariants such as PA-MPJPE ≤ MPJPE and GPA non-collapse.",
+            v: ", and literature-benchmarked synthesis among them. A regression-audit suite enforces invariants such as PA-MPJPE ≤ MPJPE and GPA non-collapse.",
           },
         ],
       },
@@ -99,7 +99,7 @@ export const projects: Project[] = [
     kind: "Thesis + Conference Poster",
     period: "May 2024",
     summary:
-      "Designed, trained and benchmarked three CNN architectures — a from-scratch baseline, a Custom ResNet with attention and ImageNet transfer learning, and a Custom EfficientNet using compound scaling — for 5-class classification on the 25,000-image LC25000 lung and colon histopathology dataset. Built for pathologist review from the start, not retrofitted with explainability afterwards.",
+      "Designed, trained and benchmarked three CNN architectures — a from-scratch baseline, a Custom ResNet with attention and ImageNet transfer learning, and a Custom EfficientNet using compound scaling — for 5-class classification on the 25,000-image LC25000 lung and colon histopathology dataset. Grad-CAM and the confusion matrices went in with the first training run, so a pathologist could check the model's reasoning from day one.",
     outcomes: [
       {
         segments: [
@@ -132,21 +132,23 @@ export const projects: Project[] = [
           { t: "strong", v: "Grad-CAM heatmaps" },
           {
             t: "text",
-            v: ", confusion matrices and convergence curves so predictions are reviewable by a pathologist — the prerequisite for any clinical deployment.",
+            v: ", confusion matrices and convergence curves, so a pathologist can check what the network actually looked at before trusting a call.",
           },
         ],
       },
     ],
+    // TensorFlow and Keras were listed here but the notebook imports neither —
+    // it is torch/torchvision throughout, with cv2 and scikit-learn alongside.
     tech: [
       "PyTorch",
-      "TensorFlow",
-      "Keras",
+      "torchvision",
       "EfficientNet",
       "ResNet",
       "Attention",
       "Transfer Learning",
       "Grad-CAM",
       "OpenCV",
+      "scikit-learn",
     ],
     links: [
       {
@@ -182,7 +184,7 @@ export const projects: Project[] = [
           { t: "strong", v: "Deep Q-Network from scratch in PyTorch" },
           {
             t: "text",
-            v: ": experience replay, periodically-synced target network, ε-greedy decay, MSE Bellman loss, CUDA handling.",
+            v: ": experience replay, periodically synced target network, ε-greedy decay, MSE Bellman loss, CUDA handling.",
           },
         ],
       },
@@ -226,7 +228,7 @@ export const projects: Project[] = [
     period: "Jul 2023",
     liveStatus: true,
     summary:
-      "End-to-end ML pipeline on 10,682 Indian domestic flight records, taken from raw data to a public application — where a free-hosting constraint turned model selection into an accuracy-versus-payload decision rather than a leaderboard one.",
+      "End-to-end ML pipeline on 10,682 Indian domestic flight records, taken from raw data to a public application. The free hosting tier has no backend, so the model had to fit inside a browser — and that constraint is what decided which model shipped.",
     outcomes: [
       {
         segments: [
@@ -244,7 +246,7 @@ export const projects: Project[] = [
       {
         segments: [
           { t: "text", v: "Benchmarked " },
-          { t: "strong", v: "six regressors" },
+          { t: "strong", v: "six models" },
           {
             t: "text",
             v: " on one 80/20 split (Random Forest, Gradient Boosting, Decision Tree, KNN, SVR, Logistic Regression). Random Forest was the most accurate at ",
@@ -277,14 +279,14 @@ export const projects: Project[] = [
           { t: "strong", v: "8.2e-9" },
           {
             t: "text",
-            v: ", with zero cases differing by as much as ₹0.50.",
+            v: " rupees — nine orders of magnitude below a single paisa.",
           },
         ],
       },
     ],
     tech: [
       "Python",
-      "Scikit-learn",
+      "scikit-learn",
       "Gradient Boosting",
       "Pandas",
       "NumPy",
@@ -316,7 +318,7 @@ export const projects: Project[] = [
       {
         segments: [
           { t: "text", v: "Merged " },
-          { t: "strong", v: "four independently-sourced agricultural datasets" },
+          { t: "strong", v: "four independently sourced agricultural datasets" },
           {
             t: "text",
             v: " (yield, rainfall, temperature, pesticide usage) into one modelling table, reconciling inconsistent country naming, misaligned year coverage, differing units and join-induced missingness.",
@@ -345,7 +347,7 @@ export const projects: Project[] = [
         ],
       },
     ],
-    tech: ["Python", "Scikit-learn", "Pandas", "NumPy", "Seaborn", "Matplotlib"],
+    tech: ["Python", "scikit-learn", "Pandas", "NumPy", "Seaborn", "Matplotlib"],
     links: [
       {
         label: "Repository",
@@ -398,7 +400,7 @@ export const projects: Project[] = [
       },
     ],
     tech: [
-      "Scikit-learn",
+      "scikit-learn",
       "K-Means",
       "Mean Shift",
       "Hierarchical Clustering",

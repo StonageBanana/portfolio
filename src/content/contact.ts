@@ -13,8 +13,9 @@ export const contact: Contact = {
   submittingLabel: "Sending",
   successLabel: "Message sent",
   errors: {
+    // Not "try again" — if the form is unconfigured, retrying can never work.
     unconfigured:
-      "Message didn't send. Try again, or email me directly.",
+      "The form isn't accepting messages right now. Please email me directly at mohanakushal.de2024@gmail.com.",
     network: "Message didn't send. Try again, or email me directly.",
     timeout: "Message didn't send. Try again, or email me directly.",
     rejected: "Message didn't send. Try again, or email me directly.",

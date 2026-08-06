@@ -47,7 +47,7 @@ export const certifications: Certification[] = [
     id: "aws-mla",
     title: "AWS Certified Machine Learning Engineer – Associate (MLA-C01)",
     issuer: "Amazon Web Services",
-    date: "targeted",
+    date: "Targeted",
     inProgress: true,
   },
 ];

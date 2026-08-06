@@ -35,9 +35,11 @@ export const skills: SkillCategory[] = [
     skills: [
       { name: "PyTorch", level: 92 },
       { name: "TensorFlow/Keras", level: 85 },
-      { name: "Scikit-learn", level: 90 },
+      { name: "scikit-learn", level: 90 },
       { name: "OpenCV", level: 87 },
-      { name: "CatBoost/XGBoost", level: 88 },
+      // Named by library rather than "Ensemble Methods" alone, which already
+      // appears as a concept under Machine Learning & Deep Learning.
+      { name: "Ensemble Methods (sklearn)", level: 88 },
       { name: "Streamlit", level: 85 },
       { name: "Matplotlib/Seaborn", level: 88 },
     ],
