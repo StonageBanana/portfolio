@@ -75,10 +75,19 @@ export const viewport: Viewport = {
  *
  * Setting the flag (rather than defaulting to "run") also means a visitor with
  * JS disabled never gets a backdrop that nothing is left to remove.
+ *
+ * Coarse pointers skip it entirely. A full-screen opaque overlay delays LCP by
+ * its whole duration, and measured on the deployed site that was the difference
+ * between a 75 and a passing mobile Lighthouse score. On desktop the preloader
+ * is an affordable flourish; on a throttled phone it is just latency in front
+ * of the content.
  */
 const PRELOADER_FLAG = `try{
-var s=(sessionStorage.getItem('pl')==='1'||matchMedia('(prefers-reduced-motion: reduce)').matches)?'skip':'run';
-document.documentElement.dataset.preload=s;
+var m=matchMedia,
+skip=sessionStorage.getItem('pl')==='1'
+||m('(prefers-reduced-motion: reduce)').matches
+||m('(pointer: coarse)').matches;
+document.documentElement.dataset.preload=skip?'skip':'run';
 sessionStorage.setItem('pl','1');}catch(e){}`;
 
 export default function RootLayout({
