@@ -5,7 +5,7 @@ export const education: EducationEntry[] = [
     id: "fau",
     degree: "M.Sc. Data Science (AI & ML)",
     institution: "Friedrich-Alexander-Universität Erlangen-Nürnberg",
-    period: "Oct 2024 – Sep 2027 (expected)",
+    period: "Oct 2024 – Jun 2027 (expected)",
     mode: "Full-time",
     location: "Erlangen, Germany",
     highlights: [
