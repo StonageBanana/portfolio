@@ -9,7 +9,6 @@ export const site: Site = {
   ],
   logo: { text: "MK", bracketed: "[ MK ]" },
   email: "mohanakushal.de2024@gmail.com",
-  phone: "+49 1551 0425067",
   location: "Erlangen, Germany",
   workAuthorisation:
     "German student residence permit · eligible for the 18-month post-study job-seeker permit and the EU Blue Card on graduation",
