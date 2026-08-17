@@ -7,7 +7,6 @@ export const skills: SkillCategory[] = [
     icon: "Terminal",
     skills: [
       { name: "Python", level: 95 },
-      { name: "SQL", level: 72 },
       { name: "JavaScript", level: 68 },
       { name: "Pandas/NumPy", level: 93 },
       { name: "Git", level: 85 },
@@ -34,7 +33,6 @@ export const skills: SkillCategory[] = [
     icon: "Layers",
     skills: [
       { name: "PyTorch", level: 92 },
-      { name: "TensorFlow/Keras", level: 85 },
       { name: "scikit-learn", level: 90 },
       { name: "OpenCV", level: 87 },
       // Named by library rather than "Ensemble Methods" alone, which already
