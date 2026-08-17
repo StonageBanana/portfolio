@@ -34,11 +34,13 @@ export function Contact({ cv }: { cv: string | null }) {
                 label={site.email}
                 href={mailtoHref(site.email)}
               />
-              <InfoRow
-                icon="Phone"
-                label={site.phone}
-                href={`tel:${site.phone.replace(/\s+/g, "")}`}
-              />
+              {site.phone && (
+                <InfoRow
+                  icon="Phone"
+                  label={site.phone}
+                  href={`tel:${site.phone.replace(/\s+/g, "")}`}
+                />
+              )}
               <InfoRow icon="MapPin" label={site.location} />
               <InfoRow
                 icon="ShieldCheck"
