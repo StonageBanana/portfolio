@@ -97,24 +97,16 @@ export const projects: Project[] = [
     index: "02",
     title: "Custom CNN Architectures for Histopathological Cancer Classification",
     kind: "Thesis + Conference Poster",
-    period: "May 2024",
+    period: "May 2024 · extended Aug 2026",
     summary:
-      "Designed, trained and benchmarked three CNN architectures — a from-scratch baseline, a Custom ResNet with attention and ImageNet transfer learning, and a Custom EfficientNet using compound scaling — for 5-class classification on the 25,000-image LC25000 lung and colon histopathology dataset. Grad-CAM and the confusion matrices went in with the first training run, so a pathologist could check the model's reasoning from day one.",
+      "Designed, trained and benchmarked three CNN architectures — a from-scratch baseline, a transfer-learned ResNet18, and a Custom EfficientNet using compound scaling — for classification on the lung subset of the LC25000 histopathology dataset (three classes: adenocarcinoma, squamous cell, benign). Grad-CAM interpretability and a CBAM attention-augmented ResNet variant were added afterward as a post-thesis extension, so a pathologist has a way to check the model's reasoning.",
     outcomes: [
       {
         segments: [
           { t: "metric", v: "97.2%" },
           {
             t: "text",
-            v: " accuracy (97.1% precision, 97.0% recall, 97.0% F1) with the Custom EfficientNet, ahead of the Custom ResNet (96.8%) and the baseline CNN (94.2%).",
-          },
-        ],
-      },
-      {
-        segments: [
-          {
-            t: "text",
-            v: "Retained both colon classes alongside the three lung classes to test whether the network learns tissue-type-specific malignancy features rather than a generic texture prior.",
+            v: " accuracy (97.1% precision, 97.0% recall, 97.0% F1) with the Custom EfficientNet, ahead of the transfer-learned ResNet18 (96.8%) and the baseline CNN (94.2%).",
           },
         ],
       },
@@ -123,6 +115,16 @@ export const projects: Project[] = [
           {
             t: "text",
             v: "Built a preprocessing and augmentation pipeline to counter overfitting on limited underlying slide diversity.",
+          },
+        ],
+      },
+      {
+        segments: [
+          { t: "text", v: "Extended the project after thesis submission with a " },
+          { t: "strong", v: "from-scratch Grad-CAM implementation" },
+          {
+            t: "text",
+            v: ", hookable onto any of the trained models, plus a CBAM channel/spatial-attention-augmented ResNet18 that preserves the original ImageNet transfer learning.",
           },
         ],
       },
@@ -144,7 +146,7 @@ export const projects: Project[] = [
       "torchvision",
       "EfficientNet",
       "ResNet",
-      "Attention",
+      "CBAM Attention",
       "Transfer Learning",
       "Grad-CAM",
       "OpenCV",
@@ -192,7 +194,7 @@ export const projects: Project[] = [
         segments: [
           {
             t: "text",
-            v: "Real-time Pygame visualiser (click-to-place start/goal/obstacles, adjustable speed, random maze generation) that makes off-policy vs. on-policy divergence directly observable.",
+            v: "Real-time matplotlib visualisation during search, plus a standalone interactive HTML/JS visualiser (pick a map, source, target and algorithm, click-to-place source/target, drag to place walls) that makes off-policy vs. on-policy divergence directly observable in the browser.",
           },
         ],
       },
@@ -205,7 +207,8 @@ export const projects: Project[] = [
     tech: [
       "Python",
       "PyTorch",
-      "Pygame",
+      "Matplotlib",
+      "HTML/JS Visualizer",
       "DQN",
       "Q-Learning",
       "SARSA",
@@ -329,25 +332,25 @@ export const projects: Project[] = [
         segments: [
           {
             t: "text",
-            v: "Benchmarked five regressors (Linear, Decision Tree, Random Forest, Gradient Boosting, SVR) on R², MAE and RMSE; ",
+            v: "Benchmarked six regressors (Linear, Decision Tree, Random Forest, Gradient Boosting, SVR, XGBoost) on test R²; ",
           },
-          { t: "strong", v: "Random Forest selected" },
+          { t: "strong", v: "Decision Tree scored highest (0.97)" },
           {
             t: "text",
-            v: ", with the gap to the linear baseline quantifying the system's non-linearity.",
-          },
-        ],
-      },
-      {
-        segments: [
-          {
-            t: "text",
-            v: "Produced a companion statistical analysis (distribution diagnostics, climate–yield relationships) that drove model selection from data properties rather than post-hoc metric comparison.",
+            v: " and is the model carried forward for feature importance and prediction — read with an overfitting caveat, since it was left unpruned. The gap to the linear baseline (R² 0.09) quantifies the system's non-linearity.",
           },
         ],
       },
     ],
-    tech: ["Python", "scikit-learn", "Pandas", "NumPy", "Seaborn", "Matplotlib"],
+    tech: [
+      "Python",
+      "scikit-learn",
+      "XGBoost",
+      "Pandas",
+      "NumPy",
+      "Seaborn",
+      "Matplotlib",
+    ],
     links: [
       {
         label: "Repository",
