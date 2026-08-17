@@ -8,7 +8,7 @@ export const achievementsSubheading =
 export const statCounters: StatCounter[] = [
   { id: "projects", value: "6", label: "Featured Projects" },
   { id: "certifications", value: "5", label: "Certifications" },
-  { id: "images", value: "25,000", label: "Images Classified" },
+  { id: "images", value: "15,000", label: "Images Classified" },
   { id: "accuracy", value: "97.2%", label: "Peak Model Accuracy" },
 ];
 
@@ -30,7 +30,7 @@ export const achievements: Achievement[] = [
     title: "Thesis and conference poster published",
     org: "VIT Chennai",
     detail:
-      "Custom CNN architectures reaching 97.2% accuracy on 25,000-image lung and colon histopathology classification, with Grad-CAM interpretability for clinical review. Both thesis and poster published in the project repository.",
+      "Custom CNN architectures reaching 97.2% accuracy on lung histopathology classification (LC25000, three classes). Extended in 2026 with a from-scratch Grad-CAM implementation for pathologist review. Both thesis and poster published in the project repository.",
     figure: "97.2%",
   },
   {
