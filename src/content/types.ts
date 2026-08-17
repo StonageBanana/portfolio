@@ -38,7 +38,9 @@ export interface Site {
   designations: string[];
   logo: { text: string; bracketed: string };
   email: string;
-  phone: string;
+  /** Optional: omit to keep it off the public site. Contact.tsx only renders
+   *  the phone row when this is set. */
+  phone?: string;
   location: string;
   workAuthorisation: string;
   workAuthorisationShort: string;
